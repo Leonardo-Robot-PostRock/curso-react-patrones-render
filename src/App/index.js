@@ -41,14 +41,29 @@ function App() {
           setSearchValue={setSearchValue}
         />
       </TodoHeader>
+      <TodoList
+        error={error}
+        loading={loading}
+        searchedTodos={searchedTodos}
+        totalTodos={totalTodos}
+        searchText={searchValue}
 
+        onError={() => <TodosError />}
+        onLoading={() => <TodosLoading />}
+        onEmptyTodos={() => <EmptyTodos />}
+        onEmptySearch={(searchText) => <p>No hay resultados para {searchText}</p>}
 
-      <TodoList>
-        {error && <TodosError />}
-        {loading && <TodosLoading />}
-        {(!loading && !searchedTodos.length) && <EmptyTodos />}
-
-        {searchedTodos.map(todo => (
+      /*render={todo => (
+         <TodoItem
+           key={todo.text}
+        text={todo.text}
+          completed={todo.completed}
+           onComplete={() => completeTodo(todo.text)}
+           onDelete={() => deleteTodo(todo.text)}
+         />
+      )}*/
+      >
+        {todo => (
           <TodoItem
             key={todo.text}
             text={todo.text}
@@ -56,22 +71,23 @@ function App() {
             onComplete={() => completeTodo(todo.text)}
             onDelete={() => deleteTodo(todo.text)}
           />
-        ))}
+        )}
       </TodoList>
-
-      {!!openModal && (
-        <Modal>
-          <TodoForm
-            addTodo={addTodo}
-            setOpenModal={setOpenModal}
-          />
-        </Modal>
-      )}
+      {
+        !!openModal && (
+          <Modal>
+            <TodoForm
+              addTodo={addTodo}
+              setOpenModal={setOpenModal}
+            />
+          </Modal>
+        )
+      }
 
       <CreateTodoButton
         setOpenModal={setOpenModal}
       />
-    </React.Fragment>
+    </React.Fragment >
   );
 }
 
