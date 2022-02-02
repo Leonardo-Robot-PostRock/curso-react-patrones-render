@@ -11,84 +11,90 @@ import { EmptyTodos } from '../EmptyTodos';
 import { TodoForm } from '../TodoForm';
 import { CreateTodoButton } from '../CreateTodoButton';
 import { Modal } from '../Modal';
+import { ChangeAlertWhitStorageListener } from '../ChangeAlert';
 
 //COMPOSICIÓN DE COMPONENTES
 
 function App() {
-  const {
-    error,
-    loading,
-    searchedTodos,
-    completeTodo,
-    deleteTodo,
-    openModal,
-    setOpenModal,
-    totalTodos,
-    completedTodos,
-    searchValue,
-    setSearchValue,
-    addTodo,
-  } = useTodos();
-  return (
-    <React.Fragment>
-      <TodoHeader>
-        <TodoCounter
-          totalTodos={totalTodos}
-          completedTodos={completedTodos}
-        />
-        <TodoSearch
-          searchValue={searchValue}
-          setSearchValue={setSearchValue}
-        />
-      </TodoHeader>
-      <TodoList
-        error={error}
-        loading={loading}
-        searchedTodos={searchedTodos}
-        totalTodos={totalTodos}
-        searchText={searchValue}
-
-        onError={() => <TodosError />}
-        onLoading={() => <TodosLoading />}
-        onEmptyTodos={() => <EmptyTodos />}
-        onEmptySearch={(searchText) => <p>No hay resultados para {searchText}</p>}
-
-      /*render={todo => (
-         <TodoItem
-           key={todo.text}
-        text={todo.text}
-          completed={todo.completed}
-           onComplete={() => completeTodo(todo.text)}
-           onDelete={() => deleteTodo(todo.text)}
-         />
-      )}*/
-      >
-        {todo => (
-          <TodoItem
-            key={todo.text}
-            text={todo.text}
-            completed={todo.completed}
-            onComplete={() => completeTodo(todo.text)}
-            onDelete={() => deleteTodo(todo.text)}
+    const {
+      error,
+      loading,
+      searchedTodos,
+      completeTodo,
+      deleteTodo,
+      openModal,
+      setOpenModal,
+      totalTodos,
+      completedTodos,
+      searchValue,
+      setSearchValue,
+      addTodo,
+    } = useTodos();
+    return (
+      <React.Fragment>
+        <TodoHeader
+          loading={loading}
+        >
+          <TodoCounter
+            totalTodos={totalTodos}
+            completedTodos={completedTodos}
           />
-        )}
-      </TodoList>
-      {
-        !!openModal && (
-          <Modal>
-            <TodoForm
-              addTodo={addTodo}
-              setOpenModal={setOpenModal}
-            />
-          </Modal>
-        )
-      }
+          <TodoSearch
+            searchValue={searchValue}
+            setSearchValue={setSearchValue}
+          />
+        </TodoHeader>
+        <TodoList
+          error={error}
+          loading={loading}
+          searchedTodos={searchedTodos}
+          totalTodos={totalTodos}
+          searchText={searchValue}
 
-      <CreateTodoButton
-        setOpenModal={setOpenModal}
-      />
-    </React.Fragment >
-  );
-}
+          onError={() => <TodosError />}
+          onLoading={() => <TodosLoading />}
+          onEmptyTodos={() => <EmptyTodos />}
+          onEmptySearch={(searchText) => <p>No hay resultados para {searchText}</p>}
+
+        // render props
+        /*render={todo => (
+           <TodoItem
+             key={todo.text}
+          text={todo.text}
+            completed={todo.completed}
+             onComplete={() => completeTodo(todo.text)}
+             onDelete={() => deleteTodo(todo.text)}
+           />
+        )}*/
+        >
+          {todo => (
+            <TodoItem
+              key={todo.text}
+              text={todo.text}
+              completed={todo.completed}
+              onComplete={() => completeTodo(todo.text)}
+              onDelete={() => deleteTodo(todo.text)}
+            />
+          )}
+        </TodoList>
+        {
+          !!openModal && (
+            <Modal>
+              <TodoForm
+                addTodo={addTodo}
+                setOpenModal={setOpenModal}
+              />
+            </Modal>
+          )
+        }
+
+        <CreateTodoButton
+          setOpenModal={setOpenModal}
+        />
+
+        <ChangeAlertWhitStorageListener />
+      </React.Fragment >
+    );
+  }
 
 export default App;
