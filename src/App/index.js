@@ -11,7 +11,7 @@ import { EmptyTodos } from '../EmptyTodos';
 import { TodoForm } from '../TodoForm';
 import { CreateTodoButton } from '../CreateTodoButton';
 import { Modal } from '../Modal';
-import { ChangeAlertWhitStorageListener } from '../ChangeAlert';
+import { ChangeAlert, ChangeAlertWhitStorageListener } from '../ChangeAlert';
 
 //COMPOSICIÓN DE COMPONENTES
 
@@ -93,7 +93,7 @@ function App() {
           setOpenModal={setOpenModal}
         />
 
-        <ChangeAlertWhitStorageListener 
+        <ChangeAlert 
           sincronize={sincronizeTodos}
         />
       </React.Fragment >

@@ -13,7 +13,7 @@ function TodoList(props) {
       {(!!props.totalTodos && !props.searchedTodos.length) && props.onEmptySearch(props.searchText)}
       {/* se envian cada uno de los todos que se iteraría en render de nuestro index/App */}
       <ul>
-        {props.searchedTodos.map(renderFunc)}
+        {(!props.loading && !props.error) && props.searchedTodos.map(renderFunc)}
       </ul>
       {/* {props.searchedTodos.map(todo => props.render(todo))} */}
     </section>
