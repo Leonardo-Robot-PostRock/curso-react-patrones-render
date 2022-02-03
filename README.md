@@ -1,5 +1,5 @@
 #Curso-react-patrones-render **con Platzi**
-#Profesor Juan David Castro
+> Profesor Juan David Castro
 
 
 - Aplicación para crear tareas. Es otra versión del proyecto realizado en el curso intro de react.  
