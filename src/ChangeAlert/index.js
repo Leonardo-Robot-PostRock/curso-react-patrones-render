@@ -6,8 +6,16 @@ function ChangeAlert({ show, toggleShow }) {
         return (
             <div>
                 <p>Hubo cambios</p>
-                <button>Volver a cargar la información</button>
-            </div>
+                <button
+                    onClick={() =>
+                        show = toggleShow(false)
+                        
+                    }
+                    
+                >
+                Volver a cargar la información
+            </button>
+            </div >
         );
     } else {
         return null;

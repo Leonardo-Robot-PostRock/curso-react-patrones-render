@@ -9,12 +9,17 @@ function withStorageListener(WrappedComponent) {
                 console.log('Hubo cambios en TODOS_V1');
                 setStorageChange(true);
             }
-        })
+        });
+
+        const toggleShow = () => {
+            props.sincronize();
+            setStorageChange(false)
+        }
 
         return (
             <WrappedComponent
                 show={storageChange}
-                toggleShow={setStorageChange}
+                toggleShow={toggleShow}
             />
         );
     }
